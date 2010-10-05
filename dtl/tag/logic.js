@@ -21,6 +21,7 @@ dojo.require("dojox.dtl._base");
 					ifnot = bool[0];
 					filter = bool[1];
 					value = filter.resolve(context);
+					if(dojo.isArray(value)){ value = value.length > 0; }
 					if((value && !ifnot) || (ifnot && !value)){
 						if(this.falses){
 							buffer = this.falses.unrender(context, buffer);

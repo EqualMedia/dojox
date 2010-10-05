@@ -147,7 +147,7 @@ dojo.experimental("dojox.dtl");
 			return new dd.Template(ddt.getTemplateString(file));
 		},
 		getTemplateString: function(file){
-			return dojo._getText(file.toString()) || "";
+			return dojo.cache(new dojo._Url(file.toString())) || "";
 		},
 		_resolveLazy: function(location, sync, json){
 			if(sync){
@@ -498,6 +498,7 @@ dojo.experimental("dojox.dtl");
 	{
 		render: function(context, buffer){
 			var str = this.contents.resolve(context);
+			if(str === null || typeof str === "undefined"){ throw new Error("Could not resolve variable " + this.contents.contents); }
 			if(!str.safe){
 				str = dd._base.escape("" + str);
 			}

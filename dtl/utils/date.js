@@ -53,7 +53,7 @@ dojo.mixin(dojox.dtl.utils.date, {
 			now = new Date();
 		}
 
-		var delta = Math.abs(now.getTime() - d.getTime());
+		var delta = Math.max(1000, Math.abs(now.getTime() - d.getTime()));
 		for(var i = 0, chunk; chunk = dojox.dtl.utils.date._chunks[i]; i++){
 			var count = Math.floor(delta / chunk[0]);
 			if(count) break;
@@ -66,7 +66,8 @@ dojo.mixin(dojox.dtl.utils.date, {
 		[60 * 60 * 24 * 7 * 1000, function(n){ return (n == 1) ? 'week' : 'weeks'; }],
 		[60 * 60 * 24 * 1000, function(n){ return (n == 1) ? 'day' : 'days'; }],
 		[60 * 60 * 1000, function(n){ return (n == 1) ? 'hour' : 'hours'; }],
-		[60 * 1000, function(n){ return (n == 1) ? 'minute' : 'minutes'; }]
+		[60 * 1000, function(n){ return (n == 1) ? 'minute' : 'minutes'; }],
+		[1000, function(n){ return (n == 1) ? 'second' : 'seconds'; }]
 	],
 	_months_ap: ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."]
 });
