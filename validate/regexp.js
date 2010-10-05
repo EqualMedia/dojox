@@ -135,7 +135,7 @@ dojo.mixin(dojox.validate.regexp, {
 		);
 
 		// Path and query and anchor RE
-		var pathRE = "(/(?:[^?#\\s/]+/)*(?:[^?#\\s/]+(?:\\?[^?#\\s/]*)?(?:#[A-Za-z][\\w.:-]*)?)?)?";
+		var pathRE = "(/(?:[^?#\\s/]+/)*(?:[^?#\\s/]+(?:\\?[^?#\\s/]*)?(?:#.*)?)?)?";
 
 		return protocolRE + dojox.validate.regexp.host(flags) + pathRE;
 	},
